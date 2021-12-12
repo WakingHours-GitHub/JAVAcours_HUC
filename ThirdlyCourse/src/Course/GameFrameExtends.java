@@ -1,12 +1,11 @@
 package Course;
 
- // 游戏入口，启动游戏
+// 游戏入口，启动游戏
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
 
 public class GameFrameExtends extends JFrame {
     int cntPattern = 1; // 设置难度的数字,计数
@@ -42,7 +41,7 @@ public class GameFrameExtends extends JFrame {
         totalPanel.add(picLabel); // 添加图片: 显示现在是第几张图片
 
         rankLabel.setText("简单"); // 显示现在是什么难度（初始为3，简单）
-        picLabel.setText("现在是第"+cntSwitchPic+"图片"); // 显示现在是第几张图片（初始为1，第一张照照片）
+        picLabel.setText("现在是第" + cntSwitchPic + "图片"); // 显示现在是第几张图片（初始为1，第一张照照片）
 
         this.add(totalPanel, BorderLayout.NORTH); // 将panel1添加到本顶级容器中
 
@@ -84,10 +83,10 @@ public class GameFrameExtends extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cntSwitchPic++;
-                if(cntSwitchPic == 5) cntSwitchPic = 1; // 重置
+                if (cntSwitchPic == 5) cntSwitchPic = 1; // 重置
                 setLabelTest(pattern); // 根据初始底数显示等级
                 breakStart(); // 游戏的启动
-                picLabel.setText("现在是第"+cntSwitchPic+"图片");
+                picLabel.setText("现在是第" + cntSwitchPic + "图片");
             }
         });
 
@@ -97,15 +96,22 @@ public class GameFrameExtends extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 cntPattern++;
                 // 当按下切换等级时，设置等级，并且充值pattern图片底数
-                switch (cntPattern){
-                    case 1->{
-                        rankLabel.setText("简单"); pattern = 3;}
-                    case 2->{
-                        rankLabel.setText("中等"); pattern = 4;}
-                    case 3->{
-                        rankLabel.setText("困难"); pattern = 5;}
+                switch (cntPattern) {
+                    case 1 -> {
+                        rankLabel.setText("简单");
+                        pattern = 3;
+                    }
+                    case 2 -> {
+                        rankLabel.setText("中等");
+                        pattern = 4;
+                    }
+
+                    case 3 -> {
+                        rankLabel.setText("困难");
+                        pattern = 5;
+                    }
                 }
-                if(cntPattern == 3) cntPattern = 0;//重置
+                if (cntPattern == 3) cntPattern = 0;//重置
                 breakStart(); // 游戏的启动
             }
 
@@ -118,7 +124,7 @@ public class GameFrameExtends extends JFrame {
      * @param pattern
      * @author WakingHours
      */
-    public void setLabelTest(int pattern){
+    public void setLabelTest(int pattern) {
         switch (pattern) {
             case 3 -> rankLabel.setText("简单");
             case 4 -> rankLabel.setText("中等");
@@ -128,23 +134,24 @@ public class GameFrameExtends extends JFrame {
     }
 
     /**
-     *设置开始游戏的方法：开始切割和重新排序图片
+     * 设置开始游戏的方法：开始切割和重新排序图片
      *
      * @author WakingHours
      */
-    public void breakStart(){
-        /*socPath = */setPath(); // 设置图片路径
+    public void breakStart() {
+        /*socPath = */
+        setPath(); // 设置图片路径
         corePanel.setBreakRandom(socPath, pattern); // 调用
     }
 
     /**
-     *设置图片路径
+     * 设置图片路径
      *
      * @author WakingHours
      */
     public void setPath() {
         // 这里cntSwitchPic是为了切换图片文件夹做准备(用于后面切换图片)
-        socPath = "E:\\HP\\Desktop\\JAVA\\pic" + cntSwitchPic +"\\";
+        socPath = "E:\\HP\\Desktop\\JAVA\\pic" + cntSwitchPic + "\\";
     }
 
 }
